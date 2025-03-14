@@ -2,7 +2,7 @@ package com.shekel.uart_comm_service.controllers;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.shekel.uart_comm_service.dto.SensorData;
+import com.shekel.uart_comm_service.dto.SensorDataDto;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.messaging.handler.annotation.MessageMapping;
@@ -22,7 +22,7 @@ public class MessageController {
         log.info("Received message: {}", message);
     }
 
-    public void sendUpdate(SensorData data) {
+    public void sendUpdate(SensorDataDto data) {
         try {
             String jsonData = objectMapper.writeValueAsString(data);
             log.info("Broadcasting message to /topic/response: {}", jsonData);
