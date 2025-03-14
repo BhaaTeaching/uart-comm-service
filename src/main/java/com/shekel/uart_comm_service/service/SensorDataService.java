@@ -18,11 +18,6 @@ public class SensorDataService {
     private final UartMapper mapper;
     private final SensorDataRepository sensorDataRepository;
 
-    public SensorData saveSensorData(SensorDataDto sensorDataDto) {
-        SensorData sensorData = mapper.toSensorData(sensorDataDto);
-        return sensorDataRepository.save(sensorData);
-    }
-
     public SensorDataDto findSensorData(Long id) {
         Optional<SensorData> sensorData = sensorDataRepository.findById(id);
         if (sensorData.isEmpty()) {

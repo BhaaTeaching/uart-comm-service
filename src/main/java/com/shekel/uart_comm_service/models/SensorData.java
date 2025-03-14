@@ -8,7 +8,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name = "uart_sim_db")
+@Table(name = "sensor_data")
 @Data
 @Builder
 @AllArgsConstructor
@@ -18,8 +18,10 @@ public class SensorData {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(name = "temperature")
     private double temperature;
 
+    @Column(name = "humidity")
     private double humidity;
 }
 
