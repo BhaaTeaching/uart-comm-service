@@ -5,7 +5,7 @@ import lombok.Data;
 import java.io.Serializable;
 
 @Data
-public class SensorData implements Serializable {
+public class SensorData {
     private Long id;
     private double temperature;
     private double humidity;

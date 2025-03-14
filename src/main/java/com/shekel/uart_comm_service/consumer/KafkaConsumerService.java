@@ -22,8 +22,8 @@ public class KafkaConsumerService {
     public void listen(String message) throws JsonProcessingException {
         System.out.println("Received Message in UART Consumer: " + message);
         SensorData sensorData = objectMapper.readValue(message, SensorData.class);
-        log.info("sensorData: {}",sensorData);
+        log.debug("sensorData: {}",sensorData);
         messageController.sendUpdate(sensorData);
-        log.info("sensorData: {}",sensorData);
+        log.info("sensorData sent to client: {}",sensorData);
     }
 }

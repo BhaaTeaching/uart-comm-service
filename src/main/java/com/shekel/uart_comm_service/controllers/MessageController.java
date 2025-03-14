@@ -16,23 +16,20 @@ import org.springframework.stereotype.Controller;
 public class MessageController {
     private final ObjectMapper objectMapper;
     private final SimpMessagingTemplate messagingTemplate;
-
     @MessageMapping("/message")
     @SendTo("/topic/response")
-    public String handleMessage(String message) throws InterruptedException {
-        Thread.sleep(2000);
+    public void handleMessage(String message) {
         log.info("Received message: {}", message);
-        return "Server response: " + message;
     }
 
     public void sendUpdate(SensorData data) {
         try {
             String jsonData = objectMapper.writeValueAsString(data);
-            log.info("🚨 Broadcasting message to /topic/response: {}", jsonData);
+            log.info("Broadcasting message to /topic/response: {}", jsonData);
             messagingTemplate.convertAndSend("/topic/response", jsonData);
-            log.info("🚨 Broadcasting message  done to /topic/response: {}", jsonData);
-        } catch (JsonProcessingException e) {
-            log.error("❌ Error serializing data: ", e);
+            log.info("Broadcasting message  done to /topic/response: {}", jsonData);
+        } catch (JsonProcessingException jsonProcessingException) {
+            log.error("Error serializing data: ", jsonProcessingException);
         }
     }
 }
